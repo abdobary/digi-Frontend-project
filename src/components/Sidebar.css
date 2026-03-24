@@ -1,0 +1,35 @@
+.sidebar { width: 200px; flex-shrink: 0; }
+
+.sidebar-group { margin-bottom: 24px; }
+
+.sidebar-heading {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sidebar-heading.btn-link { cursor: pointer; transition: color .2s; }
+.sidebar-heading.btn-link:hover { color: var(--red); }
+.sidebar-heading.btn-link.active { color: var(--red); }
+
+ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+.sidebar-item {
+  font-size: 14px;
+  color: var(--text-mid);
+  transition: color .2s;
+  padding: 2px 0;
+}
+.sidebar-item:hover { color: var(--red); }
+.sidebar-item.active { color: var(--red); font-weight: 500; }

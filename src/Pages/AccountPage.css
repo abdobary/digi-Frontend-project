@@ -1,0 +1,39 @@
+.ap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 40px 60px;
+}
+
+.ap-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.ap-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.ap-breadcrumb a:hover { color: var(--red); }
+.ap-breadcrumb span:last-child { color: var(--text); }
+
+.ap-welcome       { font-size: 13px; color: var(--text-muted); }
+.ap-welcome span  { color: var(--red); font-weight: 500; }
+
+.ap-layout {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.ap-content { flex: 1; min-width: 0; }
+
+.placeholder {
+  padding: 60px 0;
+  color: var(--text-muted);
+  font-size: 15px;
+}
