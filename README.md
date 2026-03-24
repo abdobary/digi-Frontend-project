@@ -13,6 +13,16 @@ A modern React-based e-commerce frontend that allows users to authenticate, brow
 
 ---
 
+## 🔗 Backend Repository
+
+The backend powering this application is available here:
+
+👉 https://github.com/abdobary/digi-Backend-project
+
+This backend handles authentication, user management, and wishlist functionality using a RESTful API.
+
+---
+
 ## 🧱 Architecture
 
 ```text id="x1u9is"
