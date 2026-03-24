@@ -134,7 +134,7 @@ npm run dev
 
 ### 🔐 Login Page
 
-*Add screenshot here*
+<img width="1907" height="956" alt="Login_Page" src="https://github.com/user-attachments/assets/011589ad-3b13-4655-a6c6-2231bf65acae" />
 
 ### ❤️ Wishlist
 
