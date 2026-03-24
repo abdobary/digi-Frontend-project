@@ -130,7 +130,7 @@ npm run dev
 
 ### 🏠 Home Page
 
-*Add screenshot here*
+<img width="1905" height="958" alt="Home_Page" src="https://github.com/user-attachments/assets/d577e86f-25c9-4f60-8c18-e035427d8349" />
 
 ### 🔐 Login Page
 
@@ -138,11 +138,11 @@ npm run dev
 
 ### ❤️ Wishlist
 
-*Add screenshot here*
+<img width="1920" height="956" alt="Wishlist_Page" src="https://github.com/user-attachments/assets/b396f785-e311-4db5-8454-9b75b67e5e49" />
 
 ### 👤 Profile Page
 
-*Add screenshot here*
+<img width="1905" height="958" alt="Profile_Page" src="https://github.com/user-attachments/assets/bcb2b11c-7897-4c9e-91e4-406d534bbc87" />
 
 ---
 
