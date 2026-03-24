@@ -1,18 +1,168 @@
-# React + Vite
+# 🎨 Digi Frontend Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-19-blue)
+![Vite](https://img.shields.io/badge/Vite-8-purple)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-blue)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📌 Overview
 
-## React Compiler
+A modern React-based e-commerce frontend that allows users to authenticate, browse products, manage wishlist, and update their profile. It connects to a live backend API for real-time functionality.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## 🧱 Architecture
 
-## Expanding the ESLint configuration
+```text id="x1u9is"
+User Interface (React Components)
+        ↓
+State Management (Context API)
+        ↓
+API Calls (fetch)
+        ↓
+Backend (Node.js API)
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+* 🔐 Authentication system (Login/Register)
+* 👤 Profile management
+* 🏠 Homepage UI sections (Flash Sales, Categories, etc.)
+* 🛍️ Product browsing
+* ❤️ Wishlist system
+* 🔒 Auth-based UI rendering
+* 🌐 Live backend integration
+
+---
+
+## 🧰 Tech Stack
+
+* React 19
+* Vite 8
+* React Router DOM v7
+* Bootstrap 5
+* Bootstrap Icons
+* Font Awesome
+* Context API
+* sessionStorage
+
+---
+
+## 📂 Project Structure
+
+```bash id="en8utd"
+src/
+ ├── components/
+ ├── pages/
+ ├── context/
+ ├── assets/
+ ├── App.jsx
+ ├── main.jsx
+```
+
+---
+
+## 📄 Pages
+
+* `/` → Login/Register
+* `/home` → Homepage
+* `/allproducts` → Products
+* `/wishlist` → Wishlist
+* `/singleproduct` → Product Details
+* `/account` → Profile
+* `/*` → 404
+
+---
+
+## 🔁 App Flow
+
+```text id="yehhtv"
+User Action → API Request → Backend → Response → UI Update
+```
+
+---
+
+## 🔐 Authentication
+
+* JWT-based authentication
+* Stored in sessionStorage
+* Managed via AuthContext
+* Navbar updates based on auth state
+
+---
+
+## 🌐 API Integration
+
+Base URL:
+
+```id="o6pvtg"
+https://digi-backend-project.vercel.app
+```
+
+---
+
+## ⚙️ Setup
+
+```bash id="z2dyq8"
+git clone https://github.com/abdobary/digi-Frontend-project
+cd digi-Frontend-project
+npm install
+npm run dev
+```
+
+---
+
+## 🖼️ Screenshots
+
+### 🏠 Home Page
+
+*Add screenshot here*
+
+### 🔐 Login Page
+
+*Add screenshot here*
+
+### ❤️ Wishlist
+
+*Add screenshot here*
+
+### 👤 Profile Page
+
+*Add screenshot here*
+
+---
+
+## 🧠 Key Concepts
+
+* Component-based architecture
+* Client-side routing
+* API integration
+* Global state management
+* Conditional rendering
+
+---
+
+## ⚠️ Limitations
+
+* Some static content
+* No cart/checkout yet
+* No filtering/search
+
+---
+
+## 🚀 Future Improvements
+
+* Dynamic product system
+* Cart & checkout
+* Filtering & search
+* Performance optimization
+
+---
+
+## 👨‍💻 Author
+
+Abdelrahman Tarek
