@@ -115,7 +115,7 @@ export const Sign = () => {
       };
       
       SetTheEmail(userInfo);
-      login(data.token, userInfo);
+      login(data.token, userInfo, userData._id);
       setSuccess('Logged to the account successfully!');
       setFormData({ email: '', password: '' });
       navigate('/home');
