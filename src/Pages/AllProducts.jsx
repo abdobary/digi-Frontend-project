@@ -6,7 +6,7 @@ import Img6 from "../images2/6.png";
 import Img5 from "../images2/5.png";
 
 export default function AllProduct() {
-    const { token } = useAuth();
+    const { token, Userid } = useAuth();
     const [loadingStates, setLoadingStates] = useState({});
     const [notification, setNotification] = useState({ show: false, message: '', type: '' });
     const [likedProducts, setLikedProducts] = useState({});
@@ -65,26 +65,38 @@ export default function AllProduct() {
     const fetchAllProducts = async () => {
         try {
             setLoadingProducts(true);
-            const response = await fetch('https://digi-backend-project.vercel.app/api/products', {
+            // Fetch products created by this user
+            const response = await fetch(`https://digi-backend-project.vercel.app/api/products/user/${encodeURIComponent(Userid)}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
-            
+
             const dbProducts = await response.json();
-            
-            // Create a map of product names that exist in database
+
+            // Check if dbProducts is an array
+            let productsArray = [];
+            if (Array.isArray(dbProducts)) {
+                productsArray = dbProducts;
+            } else if (dbProducts.products && Array.isArray(dbProducts.products)) {
+                productsArray = dbProducts.products;
+            } else {
+                console.error('Unexpected response format:', dbProducts);
+                return;
+            }
+
+            // Create a map of products to mark as liked/wishlist
             const likedMap = {};
-            dbProducts.forEach(product => {
-                // Match by product name to mark as liked
+            productsArray.forEach(product => {
+                // Match static products with database products
                 staticProducts.forEach(staticProduct => {
                     if (staticProduct.name === product.name) {
                         likedMap[staticProduct.id] = true;
                     }
                 });
             });
-            
+
             setLikedProducts(likedMap);
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -175,18 +187,18 @@ export default function AllProduct() {
                             )}
 
                             <div className="position-absolute top-0 end-0 d-flex flex-column gap-1 p-2">
-                                <button 
+                                <button
                                     className="btn btn-white btn-sm border rounded-circle p-0"
                                     onClick={() => createProduct(p)}
                                     disabled={loadingStates[p.id] || likedProducts[p.id]}
                                     style={{ width: '32px', height: '32px' }}
                                 >
-                                    <i 
+                                    <i
                                         className={`bi ${loadingStates[p.id] ? 'bi-hourglass-split' : likedProducts[p.id] ? 'bi-heart-fill' : 'bi-heart'}`}
                                         style={{ color: likedProducts[p.id] ? 'red' : 'black' }}
                                     ></i>
                                 </button>
-                                <button 
+                                <button
                                     className="btn btn-white btn-sm border rounded-circle p-0"
                                     style={{ width: '32px', height: '32px' }}
                                 >
@@ -218,7 +230,7 @@ export default function AllProduct() {
                                     {"☆".repeat(5 - p.rating)}
                                     <span className="text-muted"> ({p.reviews})</span>
                                 </div>
-                                <button 
+                                <button
                                     className="btn btn-dark btn-sm w-100 mt-2"
                                     onClick={() => createProduct(p)}
                                     disabled={loadingStates[p.id] || likedProducts[p.id]}
