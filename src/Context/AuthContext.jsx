@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
   const [MyEmail, setMyEmail] = useState({ user_email: "", user_username: "", user_address: "" });
+  const [Userid, setUserid] = useState("");
 
   // Check sessionStorage on page load/refresh
   useEffect(() => {
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = (userToken, userData) => {
+  const login = (userToken, userData, _userid) => {
     // Store in sessionStorage (clears when tab closes)
     sessionStorage.setItem('token', userToken);
     sessionStorage.setItem('user', JSON.stringify(userData));
@@ -29,6 +30,8 @@ export const AuthProvider = ({ children }) => {
     setToken(userToken);
     setIsLoggedIn(true);
     setMyEmail(userData);
+    setUserid(_userid);
+    console.log(Userid)
   };
 
   const SetTheEmail = (_email) => {
@@ -53,6 +56,7 @@ export const AuthProvider = ({ children }) => {
       isLoggedIn, 
       MyEmail, 
       token,
+      Userid,
       login, 
       logout, 
       SetTheEmail 
