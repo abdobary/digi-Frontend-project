@@ -6,7 +6,7 @@ import dev3IMG from '../images/dev3.png';
 import dev4IMG from '../images/dev4.png';
 
 export default function Wishlist() {
-  const { token } = useAuth();
+  const { token, Userid } = useAuth();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [notification, setNotification] = useState({ show: false, message: '', type: '' });
@@ -35,7 +35,7 @@ export default function Wishlist() {
   const fetchWishlist = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://digi-backend-project.vercel.app/api/products', {
+      const response = await fetch(`https://digi-backend-project.vercel.app/api/products/user/${encodeURIComponent(Userid)}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -43,6 +43,7 @@ export default function Wishlist() {
       });
       
       const data = await response.json();
+      
       // Add image to each product based on name
       const productsWithImages = data.map((product) => ({
         ...product,
