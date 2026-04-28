@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../Context/AuthContext';
-import dev1IMG from '../images/dev1.png';
-import dev2IMG from '../images/dev2.png';
-import dev3IMG from '../images/dev3.png';
-import dev4IMG from '../images/dev4.png';
+import dev1IMG from '../images/Dev1.png';
+import dev2IMG from '../images/Dev2.png';
+import dev3IMG from '../images/Dev3.png';
+import dev4IMG from '../images/Dev4.png';
 
 export default function Wishlist() {
   const { token, Userid } = useAuth();
