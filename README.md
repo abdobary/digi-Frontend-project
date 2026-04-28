@@ -10,6 +10,7 @@
 ## 📌 Overview
 
 A modern React-based e-commerce frontend that allows users to authenticate, browse products, manage wishlist, and update their profile. It connects to a live backend API for real-time functionality.
+
 Live Demo: https://spontaneous-heliotrope-2ae25e.netlify.app/
 
 ---
