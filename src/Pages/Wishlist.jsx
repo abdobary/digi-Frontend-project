@@ -6,7 +6,7 @@ import dev3IMG from '../images/Dev3.png';
 import dev4IMG from '../images/Dev4.png';
 
 export default function Wishlist() {
-  const { token, Userid, loading: authLoading } = useAuth(); // assume authLoading is provided
+  const { token, Userid, loading } = useAuth();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [notification, setNotification] = useState({ show: false, message: '', type: '' });
