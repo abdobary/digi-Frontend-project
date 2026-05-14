@@ -8,47 +8,49 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [MyEmail, setMyEmail] = useState({ user_email: "", user_username: "", user_address: "" });
   const [Userid, setUserid] = useState("");
+  const [loading, setLoading] = useState(true); // ✅ add loading state
 
-  // Check sessionStorage on page load/refresh
+  // Restore session from sessionStorage on mount (runs once)
   useEffect(() => {
     const storedToken = sessionStorage.getItem('token');
     const storedUser = sessionStorage.getItem('user');
-    
-    if (storedToken && storedUser) {
+    const storedUserId = sessionStorage.getItem('userId'); // ✅ store userId separately
+
+    if (storedToken && storedUser && storedUserId) {
       setToken(storedToken);
       setIsLoggedIn(true);
       setMyEmail(JSON.parse(storedUser));
+      setUserid(storedUserId);
     }
+    setLoading(false); // ✅ auth initialization finished
   }, []);
 
   const login = (userToken, userData, _userid) => {
-    // Store in sessionStorage (clears when tab closes)
+    // Store in sessionStorage
     sessionStorage.setItem('token', userToken);
     sessionStorage.setItem('user', JSON.stringify(userData));
-    
+    sessionStorage.setItem('userId', _userid); // ✅ persist userId
+
     // Update state
     setToken(userToken);
     setIsLoggedIn(true);
     setMyEmail(userData);
     setUserid(_userid);
-    console.log(Userid)
   };
 
   const SetTheEmail = (_email) => {
     setMyEmail(_email);
-    // Also update sessionStorage
     sessionStorage.setItem('user', JSON.stringify(_email));
   };
 
   const logout = () => {
-    // Clear sessionStorage
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
-    
-    // Reset state
+    sessionStorage.removeItem('userId'); // ✅ clear userId
     setToken(null);
     setIsLoggedIn(false);
     setMyEmail({ user_email: "", user_username: "", user_address: "" });
+    setUserid("");
   };
 
   return (
@@ -57,6 +59,7 @@ export const AuthProvider = ({ children }) => {
       MyEmail, 
       token,
       Userid,
+      loading,        // ✅ expose loading
       login, 
       logout, 
       SetTheEmail 
