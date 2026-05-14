@@ -6,21 +6,20 @@ import Img6 from "../images2/6.png";
 import Img5 from "../images2/5.png";
 
 export default function AllProduct() {
-    const { token, Userid, loading: authLoading } = useAuth(); // <-- add loading
+    const { token, Userid, loading: authLoading } = useAuth(); // ✅ get loading
     const [loadingStates, setLoadingStates] = useState({});
     const [notification, setNotification] = useState({ show: false, message: '', type: '' });
     const [likedProducts, setLikedProducts] = useState({});
     const [loadingProducts, setLoadingProducts] = useState(true);
-    const [products, setProducts] = useState([]);
 
-    const staticProducts = [ /* ... unchanged ... */ ];
+    const staticProducts = [ /* ... same as before ... */ ];
 
-    // ✅ Fetch only when Userid is ready
+    // ✅ Fetch only when Userid and token are ready
     useEffect(() => {
         if (Userid && token) {
             fetchUserWishlistStatus();
         } else if (!authLoading && !Userid) {
-            // No user logged in – no need to fetch
+            // No user logged in – clear liked state
             setLoadingProducts(false);
             setLikedProducts({});
         }
@@ -34,8 +33,8 @@ export default function AllProduct() {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`   // ✅ required if endpoint is protected
-                    }
+                        'Authorization': `Bearer ${token}`, // ✅ required
+                    },
                 }
             );
 
@@ -44,7 +43,6 @@ export default function AllProduct() {
             const dbProducts = await response.json();
             const productsArray = Array.isArray(dbProducts) ? dbProducts : (dbProducts.products || []);
 
-            // Build liked map
             const likedMap = {};
             productsArray.forEach(dbProduct => {
                 staticProducts.forEach(staticProduct => {
@@ -83,12 +81,12 @@ export default function AllProduct() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     name: product.name,
-                    price: product.price
-                })
+                    price: product.price,
+                }),
             });
             const data = await response.json();
             if (!response.ok) throw new Error(data.message || 'Failed to create product');
@@ -101,14 +99,14 @@ export default function AllProduct() {
         }
     };
 
-    // Show auth loading
+    // ✅ Wait for auth to load before rendering content
     if (authLoading) {
         return (
             <div className="container my-5 text-center">
                 <div className="spinner-border text-danger" role="status">
-                    <span className="visually-hidden">Checking session...</span>
+                    <span className="visually-hidden">Loading session...</span>
                 </div>
-                <p className="mt-2">Loading your account...</p>
+                <p className="mt-2">Checking your account...</p>
             </div>
         );
     }
@@ -126,18 +124,15 @@ export default function AllProduct() {
 
     return (
         <div className="container my-5">
-            {/* Notification toast */}
             {notification.show && (
                 <div className={`position-fixed top-0 end-0 m-3 alert alert-${notification.type === 'success' ? 'success' : notification.type === 'info' ? 'info' : 'danger'} shadow-lg`} style={{ zIndex: 9999 }}>
                     {notification.message}
                 </div>
             )}
-
             <div className="row g-4 mt-5">
                 <h3 className="mb-3">All Products</h3>
                 {staticProducts.map((p) => (
                     <div key={p.id} className="col-6 col-md-4 col-lg-3">
-                        {/* ... your existing product card JSX, but ensure button disabled logic uses likedProducts[p.id] correctly ... */}
                         <div className="border rounded overflow-hidden position-relative bg-white h-100">
                             {p.discount && <span className="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">{p.discount}</span>}
                             <div className="position-absolute top-0 end-0 d-flex flex-column gap-1 p-2">
